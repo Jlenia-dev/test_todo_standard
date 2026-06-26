@@ -84,7 +84,7 @@
       display: inline-flex;
       align-items: center;
       gap: 0.6rem;
-      background: var(--navy);
+      background: var(--primary);
       color: #fff;
       border: 0;
       font-family: inherit;
@@ -97,7 +97,7 @@
       letter-spacing: 0.5px;
       transition: background 0.2s ease, transform 0.1s ease;
     }
-    .start:hover { background: #142c47; }
+    .start:hover { background: #00404f; }
     .start:active { transform: translateY(1px); }
     .start:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
     .start .arrow { transition: transform 0.2s ease; }
@@ -138,8 +138,8 @@
     }
     .fallback p strong { color: var(--primary); }
     .fallback-title {
-      margin: 0 0 0.6rem;
-      font-size: 1.05rem;
+      margin: 0 0 16px;
+      font-size: 1.14rem;
       font-weight: 600;
       color: var(--primary);
     }
@@ -152,9 +152,11 @@
       font-family: inherit;
       font-size: 0.92rem;
       font-weight: 600;
-      padding: 0.7rem 1rem;
+      padding: 0.75rem 1rem;
       border-radius: 999px;
       cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
       transition: background 0.2s ease;
     }
     .fallback-btn:hover { background: #00404f; }
@@ -184,7 +186,7 @@
     <div class="fallback" id="fallback">
       <p class="fallback-title">Consenso popup necessario</p>
       <p>Per consentire al browser di aprire le schede necessarie per l'esecuzione del test, clicca sull'icona di <strong>popup bloccato</strong> nella barra degli indirizzi e scegli "Consenti sempre". Poi premi il pulsante qui sotto.</p>
-      <button class="fallback-btn" id="riprova">Ho consentito — apri le schede</button>
+      <button class="fallback-btn" id="riprova">Apri le schede</button>
     </div>
   </main>
 
