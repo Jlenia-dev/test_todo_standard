@@ -195,7 +195,7 @@
     <div class="fallback" id="fallback">
       <p class="fallback-title">Consenso popup necessario</p>
       <p>Per consentire al browser di aprire le schede necessarie per l'esecuzione del test, clicca sull'icona di <strong>popup bloccato</strong> nella barra degli indirizzi e scegli "Consenti sempre". Poi premi il pulsante qui sotto.</p>
-      <button class="fallback-btn" id="riprova">Fatto, Inizia il test</button>
+      <button class="fallback-btn" id="riprova">Fatto, inizia il test</button>
     </div>
   </main>
 
@@ -210,7 +210,34 @@
     const fallback = document.getElementById("fallback");
     const overlay = document.getElementById("overlay");
 
+    let aperte = [];        // riferimenti alle schede aperte con successo
+    let inCorso = false;    // throttle: ignora i click ravvicinati
+
+    // Restituisce solo le schede del nostro gruppo ancora aperte
+    function schedeVive() {
+      aperte = aperte.filter(w => w && !w.closed);
+      return aperte;
+    }
+
     function apriSchede() {
+      // Anti-spam: un solo tentativo alla volta, poi breve pausa
+      if (inCorso) return;
+      inCorso = true;
+      setTimeout(() => { inCorso = false; }, 500);
+
+      // Se le 4 schede sono già aperte, non riaprirle: niente nuove tab,
+      // porta solo la vista sull'ultima e chiudi riquadro e overlay.
+      if (schedeVive().length === urls.length) {
+        fallback.classList.remove("show");
+        overlay.classList.remove("show");
+        try { aperte[aperte.length - 1].focus(); } catch (e) {}
+        return;
+      }
+
+      // Chiudi eventuali schede rimaste da un tentativo parziale precedente
+      aperte.forEach(w => { try { w.close(); } catch (e) {} });
+      aperte = [];
+
       const opened = [];
       let blocked = false;
 
@@ -230,15 +257,17 @@
         // Tutto o niente: chiudi le schede aperte e resta sulle istruzioni,
         // senza portare la vista su nessuna scheda. Mostra riquadro e overlay.
         opened.forEach(win => { try { win.close(); } catch (e) {} });
+        aperte = [];
         window.focus();
         fallback.classList.add("show");
         overlay.classList.add("show");
       } else {
-        // Tutte e 4 aperte: chiudi riquadro e overlay, vista sull'ultima (la 4ª).
+        // Tutte e 4 aperte: memorizzale, chiudi riquadro e overlay,
+        // vista sull'ultima (la 4ª).
+        aperte = opened;
         fallback.classList.remove("show");
         overlay.classList.remove("show");
-        const ultima = opened[opened.length - 1];
-        try { ultima.focus(); } catch (e) {}
+        try { opened[opened.length - 1].focus(); } catch (e) {}
       }
     }
 
