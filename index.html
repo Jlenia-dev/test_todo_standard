@@ -2,16 +2,20 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Test</title>
+  <title>Test di usabilità</title>
 </head>
 <body>
-
-<script>
-window.open("https://www.figma.com/proto/ssHZhFwVgIU9mTBDYeR4uS/OURBANK---Intranet--LOTTO-2----Playground-UX-UI?node-id=792-62548&viewport=3285%2C-1228%2C0.1&t=ARG0o8lBxyJ23Xb4-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=792%3A62548&page-id=10%3A19624", "_blank");
-window.open("https://www.figma.com/proto/ssHZhFwVgIU9mTBDYeR4uS/OURBANK---Intranet--LOTTO-2----Playground-UX-UI?node-id=792-62548&viewport=3285%2C-1228%2C0.1&t=ARG0o8lBxyJ23Xb4-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=792%3A62548&page-id=10%3A19624", "_blank");
-window.open("https://www.figma.com/proto/ssHZhFwVgIU9mTBDYeR4uS/OURBANK---Intranet--LOTTO-2----Playground-UX-UI?node-id=792-62548&viewport=3285%2C-1228%2C0.1&t=ARG0o8lBxyJ23Xb4-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=792%3A62548&page-id=10%3A19624", "_blank");
-window.open("https://www.figma.com/proto/ssHZhFwVgIU9mTBDYeR4uS/OURBANK---Intranet--LOTTO-2----Playground-UX-UI?node-id=792-62548&viewport=3285%2C-1228%2C0.1&t=ARG0o8lBxyJ23Xb4-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=792%3A62548&page-id=10%3A19624", "_blank");
-</script>
-
+  <button id="apri" style="font-size:18px; padding:12px 24px;">Apri le 4 schede</button>
+  <script>
+    const urls = [
+      "https://www.figma.com/proto/LINK-1",
+      "https://www.figma.com/proto/LINK-2",
+      "https://www.figma.com/proto/LINK-3",
+      "https://www.figma.com/proto/LINK-4"
+    ];
+    document.getElementById("apri").addEventListener("click", () => {
+      urls.forEach(url => window.open(url, "_blank"));
+    });
+  </script>
 </body>
 </html>
