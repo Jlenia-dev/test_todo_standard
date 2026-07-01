@@ -32,7 +32,7 @@
     }
     .sheet {
       width: 100%;
-      max-width: 620px;
+      max-width: 680px;
     }
     h1 {
       font-family: "Jost", system-ui, sans-serif;
@@ -75,9 +75,9 @@
       font-family: "Jost", system-ui, sans-serif;
       font-size: 1.15rem;
       font-weight: 600;
-      color: var(--primary);
+      color: var(--muted);
     }
-    strong { color: var(--navy); font-weight: 600; }
+    strong { color: var(--ink); font-weight: 600; }
     hr {
       border: 0;
       border-top: 1px solid var(--rule);
@@ -94,94 +94,95 @@
       font-size: 1.02rem;
       margin: 0 0 2.8rem;
     }
-    .start {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.6rem;
-      background: var(--primary);
-      color: #fff;
-      border: 0;
-      font-family: inherit;
-      font-size: 1rem;
-      font-weight: 600;
-      padding: 0.95rem 1.7rem;
-      border-radius: 999px;
+    .tasks-label {
+      font-size: 1.06rem;
+      line-height: 1.5;
+      color: var(--body);
+      margin: 0 0 1.2rem;
+    }
+    .task-row {
+      display: flex;
+      gap: 0.75rem;
+      max-width: 680px;
+    }
+    .task-tile {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+      border-radius: 1rem;
+      border: 1px solid rgba(0, 0, 0, 0.10);
+      background-color: #f4f0ea;
+      padding: 1.25rem;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+      flex: 1;
+      min-height: 130px;
       cursor: pointer;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      transition: background 0.2s ease, transform 0.1s ease;
+      text-decoration: none;
+      transition: box-shadow 0.2s, transform 0.2s;
     }
-    .start:hover { background: #00404f; }
-    .start:active { transform: translateY(1px); }
-    .start:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
-    .start .arrow { transition: transform 0.2s ease; }
-    .start:hover .arrow { transform: translateX(3px); }
-
-    .overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.45);
-      z-index: 999;
+    .task-tile:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.10);
     }
-    .overlay.show { display: block; }
-
-    .fallback {
-      display: none;
-      position: fixed;
-      top: 1rem;
-      right: 5rem;
-      width: 320px;
-      max-width: calc(100vw - 2rem);
-      padding: 1.2rem 1.3rem;
-      background: #fbf9f4;
-      border: 1px solid var(--rule);
-      border-radius: 14px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
-      z-index: 1000;
+    .task-tile:focus-visible {
+      outline: 3px solid var(--gold);
+      outline-offset: 2px;
     }
-    .fallback.show { display: block; }
-    .fallback::before {
-      content: "";
+    .task-tile::before {
+      content: '';
       position: absolute;
-      top: -9px;
-      left: 26px;
-      width: 16px;
-      height: 16px;
-      background: #fbf9f4;
-      border-top: 1px solid var(--rule);
-      border-left: 1px solid var(--rule);
-      transform: rotate(45deg);
+      top: 0;
+      right: 0;
+      width: 3.5rem;
+      height: 3.5rem;
+      border-bottom-left-radius: 1.5rem;
+      background-color: rgba(0, 0, 0, 0.05);
+      transition: width 0.2s, height 0.2s;
     }
-    .fallback p {
-      margin: 0;
-      line-height: 1.55;
+    .task-tile:hover::before {
+      width: 4rem;
+      height: 4rem;
+    }
+    .task-tile .arrow {
+      align-self: flex-end;
+      position: relative;
+      z-index: 1;
+      color: #9a9488;
+      line-height: 0;
+      transition: color 0.2s ease;
+    }
+    .task-tile .arrow svg {
+      display: block;
+      width: 18px;
+      height: 18px;
+      stroke-width: 1.5;
+      transition: stroke-width 0.2s ease;
+    }
+    .task-tile:hover .arrow {
+      color: #33352f;
+    }
+    .task-tile:hover .arrow svg {
+      stroke-width: 2;
+    }
+    .task-tile .label {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #1c1c1c;
+      margin-top: auto;
+      line-height: 1.2;
+    }
+    .task-check {
+      position: relative;
+      z-index: 1;
+      display: none;
+      margin-top: 0.35rem;
       font-size: 0.95rem;
-      color: var(--ink);
+      font-weight: 700;
+      color: #2e7d32;
     }
-    .fallback p strong { color: var(--primary); }
-    .fallback .fallback-title {
-      margin: 0 0 10px;
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: var(--ink);
-    }
-    .fallback-btn {
-      margin-top: 1rem;
-      width: 100%;
-      background: var(--primary);
-      color: #fff;
-      border: 0;
-      font-family: inherit;
-      font-size: 0.92rem;
-      font-weight: 600;
-      padding: 0.75rem 1rem;
-      border-radius: 999px;
-      cursor: pointer;
-      transition: background 0.2s ease;
-    }
-    .fallback-btn:hover { background: #00404f; }
-    .fallback-btn:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+    .task-tile.opened .task-check { display: block; }
   </style>
 </head>
 <body>
@@ -202,18 +203,33 @@
 
     <p class="note">Non esistono risposte giuste o sbagliate — sentiti libero di rispondere come ti sembra più appropriato.</p>
 
-    <p class="thanks">🎁 Ti ringraziamo per la tua preziosa collaborazione.</p>
+    <p class="thanks">🙏 Ti ringraziamo per la tua preziosa collaborazione.</p>
 
-    <button class="start" id="apri">
-      Inizia il test <span class="arrow">→</span>
-    </button>
+    <hr>
 
-    <div class="overlay" id="overlay"></div>
+    <p class="tasks-label">Apri un task per iniziare:</p>
 
-    <div class="fallback" id="fallback">
-      <p class="fallback-title">Consenso popup necessario</p>
-      <p>Per consentire al browser di aprire le schede necessarie per l'esecuzione del test, clicca sull'icona di <strong>popup bloccato</strong> nella barra degli indirizzi e scegli "Consenti sempre". Poi premi il pulsante qui sotto.</p>
-      <button class="fallback-btn" id="riprova">Fatto - inizia il test</button>
+    <div class="task-row">
+      <a class="task-tile" target="_blank" rel="noopener">
+        <span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+        <span class="label">Task 1</span>
+        <span class="task-check">✓</span>
+      </a>
+      <a class="task-tile" target="_blank" rel="noopener">
+        <span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+        <span class="label">Task 2</span>
+        <span class="task-check">✓</span>
+      </a>
+      <a class="task-tile" target="_blank" rel="noopener">
+        <span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+        <span class="label">Task 3</span>
+        <span class="task-check">✓</span>
+      </a>
+      <a class="task-tile" target="_blank" rel="noopener">
+        <span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+        <span class="label">Task 4</span>
+        <span class="task-check">✓</span>
+      </a>
     </div>
   </main>
 
@@ -225,72 +241,14 @@
       "https://www.figma.com/proto/ssHZhFwVgIU9mTBDYeR4uS/OURBANK---Intranet--LOTTO-2----Playground-UX-UI?node-id=2320-77630&starting-point-node-id=2320%3A77630&show-proto-sidebar=1&t=PUiFFQdIc6RoWwis-8&scaling=contain&content-scaling=fixed&hotspot-hints=0&hide-ui=1"
     ];
 
-    const fallback = document.getElementById("fallback");
-    const overlay = document.getElementById("overlay");
-
-    let aperte = [];        // riferimenti alle schede aperte con successo
-    let inCorso = false;    // throttle: ignora i click ravvicinati
-
-    // Restituisce solo le schede del nostro gruppo ancora aperte
-    function schedeVive() {
-      aperte = aperte.filter(w => w && !w.closed);
-      return aperte;
-    }
-
-    function apriSchede() {
-      // Anti-spam: un solo tentativo alla volta, poi breve pausa
-      if (inCorso) return;
-      inCorso = true;
-      setTimeout(() => { inCorso = false; }, 500);
-
-      // Se le 4 schede sono già aperte, non riaprirle: niente nuove tab,
-      // porta solo la vista sull'ultima e chiudi riquadro e overlay.
-      if (schedeVive().length === urls.length) {
-        fallback.classList.remove("show");
-        overlay.classList.remove("show");
-        try { aperte[aperte.length - 1].focus(); } catch (e) {}
-        return;
-      }
-
-      // Chiudi eventuali schede rimaste da un tentativo parziale precedente
-      aperte.forEach(w => { try { w.close(); } catch (e) {} });
-      aperte = [];
-
-      const opened = [];
-      let blocked = false;
-
-      // Apre le 4 schede tenendone i riferimenti. Subito dopo l'apertura
-      // riporta il focus a questa pagina, così le prime restano "dietro".
-      for (const url of urls) {
-        const win = window.open(url, "_blank");
-        if (!win || win.closed || typeof win.closed === "undefined") {
-          blocked = true;
-        } else {
-          opened.push(win);
-          try { win.blur(); window.focus(); } catch (e) {}
-        }
-      }
-
-      if (blocked) {
-        // Tutto o niente: chiudi le schede aperte e resta sulle istruzioni,
-        // senza portare la vista su nessuna scheda. Mostra riquadro e overlay.
-        opened.forEach(win => { try { win.close(); } catch (e) {} });
-        aperte = [];
-        window.focus();
-        fallback.classList.add("show");
-        overlay.classList.add("show");
-      } else {
-        // Tutte e 4 aperte: memorizzale, chiudi riquadro e overlay,
-        // vista sull'ultima (la 4ª).
-        aperte = opened;
-        fallback.classList.remove("show");
-        overlay.classList.remove("show");
-        try { opened[opened.length - 1].focus(); } catch (e) {}
-      }
-    }
-
-    document.getElementById("apri").addEventListener("click", apriSchede);
-    document.getElementById("riprova").addEventListener("click", apriSchede);
+    // Assegna a ogni tile il link del task e la spunta "Aperto" al click.
+    // Sono link diretti (target _blank): non passano da window.open, quindi
+    // il blocco popup non li tocca, nemmeno con le policy aziendali.
+    const tiles = document.querySelectorAll(".task-tile");
+    tiles.forEach((tile, i) => {
+      if (urls[i]) tile.setAttribute("href", urls[i]);
+      tile.addEventListener("click", () => tile.classList.add("opened"));
+    });
   </script>
 </body>
 </html>
