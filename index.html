@@ -7,7 +7,7 @@
   <title>Test di usabilità</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg: #f3f0e9;
@@ -66,7 +66,7 @@
       display: grid;
       grid-template-columns: 2.4rem 1fr;
       gap: 0.6rem;
-      margin-bottom: 1.1rem;
+      margin-bottom: 0.7rem;
       font-size: 1.06rem;
       line-height: 1.65;
     }
@@ -155,8 +155,8 @@
     }
     .task-tile .arrow svg {
       display: block;
-      width: 18px;
-      height: 18px;
+      width: 16px;
+      height: 16px;
       stroke-width: 1.5;
       transition: stroke-width 0.2s ease;
     }
@@ -168,19 +168,27 @@
     }
     .task-tile .label {
       font-size: 1.25rem;
-      font-weight: 700;
+      font-weight: 500;
       color: #1c1c1c;
       margin-top: auto;
       line-height: 1.2;
+      transition: font-weight 0.2s ease;
+    }
+    .task-tile:hover .label {
+      font-weight: 600;
     }
     .task-check {
       position: relative;
       z-index: 1;
       display: none;
       margin-top: 0.35rem;
-      font-size: 0.95rem;
-      font-weight: 700;
+      font-size: 0.85rem;
+      font-weight: 400;
+      color: var(--muted);
+    }
+    .task-check .check-icon {
       color: #2e7d32;
+      font-weight: 700;
     }
     .task-tile.opened .task-check { display: block; }
   </style>
@@ -203,7 +211,7 @@
 
     <p class="note">Non esistono risposte giuste o sbagliate — sentiti libero di rispondere come ti sembra più appropriato.</p>
 
-    <p class="thanks">🙏 Ti ringraziamo per la tua preziosa collaborazione.</p>
+    <p class="thanks">✨ Ti ringraziamo per la tua preziosa collaborazione.</p>
 
     <hr>
 
@@ -213,32 +221,32 @@
       <a class="task-tile" target="_blank" rel="noopener">
         <span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
         <span class="label">Task 1</span>
-        <span class="task-check">✓</span>
+        <span class="task-check"><span class="check-icon">✓</span> Aperto</span>
       </a>
       <a class="task-tile" target="_blank" rel="noopener">
         <span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
         <span class="label">Task 2</span>
-        <span class="task-check">✓</span>
+        <span class="task-check"><span class="check-icon">✓</span> Aperto</span>
       </a>
       <a class="task-tile" target="_blank" rel="noopener">
         <span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
         <span class="label">Task 3</span>
-        <span class="task-check">✓</span>
+        <span class="task-check"><span class="check-icon">✓</span> Aperto</span>
       </a>
       <a class="task-tile" target="_blank" rel="noopener">
         <span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
         <span class="label">Task 4</span>
-        <span class="task-check">✓</span>
+        <span class="task-check"><span class="check-icon">✓</span> Aperto</span>
       </a>
     </div>
   </main>
 
   <script>
     const urls = [
-      "https://www.figma.com/proto/ssHZhFwVgIU9mTBDYeR4uS/OURBANK---Intranet--LOTTO-2----Playground-UX-UI?node-id=2320-77633&starting-point-node-id=2320%3A77633&show-proto-sidebar=1&t=PUiFFQdIc6RoWwis-8&scaling=contain&content-scaling=fixed&hotspot-hints=0&hide-ui=1",
-      "https://www.figma.com/proto/ssHZhFwVgIU9mTBDYeR4uS/OURBANK---Intranet--LOTTO-2----Playground-UX-UI?node-id=2320-77632&starting-point-node-id=2320%3A77632&show-proto-sidebar=1&t=PUiFFQdIc6RoWwis-8&scaling=contain&content-scaling=fixed&hotspot-hints=0&hide-ui=1",
+      "https://www.figma.com/proto/ssHZhFwVgIU9mTBDYeR4uS/OURBANK---Intranet--LOTTO-2----Playground-UX-UI?node-id=2320-77630&starting-point-node-id=2320%3A77630&show-proto-sidebar=1&t=PUiFFQdIc6RoWwis-8&scaling=contain&content-scaling=fixed&hotspot-hints=0&hide-ui=1",
       "https://www.figma.com/proto/ssHZhFwVgIU9mTBDYeR4uS/OURBANK---Intranet--LOTTO-2----Playground-UX-UI?node-id=2320-77631&starting-point-node-id=2320%3A77631&show-proto-sidebar=1&t=PUiFFQdIc6RoWwis-8&scaling=contain&content-scaling=fixed&hotspot-hints=0&hide-ui=1",
-      "https://www.figma.com/proto/ssHZhFwVgIU9mTBDYeR4uS/OURBANK---Intranet--LOTTO-2----Playground-UX-UI?node-id=2320-77630&starting-point-node-id=2320%3A77630&show-proto-sidebar=1&t=PUiFFQdIc6RoWwis-8&scaling=contain&content-scaling=fixed&hotspot-hints=0&hide-ui=1"
+      "https://www.figma.com/proto/ssHZhFwVgIU9mTBDYeR4uS/OURBANK---Intranet--LOTTO-2----Playground-UX-UI?node-id=2320-77632&starting-point-node-id=2320%3A77632&show-proto-sidebar=1&t=PUiFFQdIc6RoWwis-8&scaling=contain&content-scaling=fixed&hotspot-hints=0&hide-ui=1",
+      "https://www.figma.com/proto/ssHZhFwVgIU9mTBDYeR4uS/OURBANK---Intranet--LOTTO-2----Playground-UX-UI?node-id=2320-77633&starting-point-node-id=2320%3A77633&show-proto-sidebar=1&t=PUiFFQdIc6RoWwis-8&scaling=contain&content-scaling=fixed&hotspot-hints=0&hide-ui=1"
     ];
 
     // Assegna a ogni tile il link del task e la spunta "Aperto" al click.
